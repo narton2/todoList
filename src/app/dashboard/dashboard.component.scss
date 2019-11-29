@@ -1,0 +1,156 @@
+$main-color: rgb(80, 66, 66);
+$hover-color: rgb(32, 179, 117);
+$border-bottom: 3px $main-color solid;
+$disabled-color: rgb(154, 165, 161);
+$font-size-task: 1em;
+$hover-delete-color: rgb(243, 17, 17);
+$hover-border-color: rgb(4, 89, 216);
+
+* { box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:1em;
+    margin:2px 10px;
+    user-select: none;}
+
+.container {
+    position:relative;
+    width:100%;
+    height: 100%;
+    margin:0px 0;
+}
+
+.navbar {
+    display: flex;
+    width:50%;
+    position:relative;
+    button {
+        flex: 50%;
+    }
+}
+
+.title {
+    display:flex;
+    color: $main-color;
+    font: {
+        size:2em;
+    }
+    :not(:first-child) {
+        flex:80%;
+        margin-left: 10px;
+        font-weight: bold;
+    }
+    i {
+        cursor: pointer;
+    }
+}
+
+a.tasks { 
+    width:100%;
+    text-decoration: none;
+    user-select: none;
+    .taskcontainer {
+        border-bottom: $border-bottom;
+        display:flex;
+        font-size: $font-size-task;
+        color: $main-color;
+        font-weight: bold;
+        position: relative;
+        .taskchecked {
+            flex: 5%;
+        }
+        .tasklist {
+            flex:95%;
+            .grid {
+                display:flex;
+                .taskname {
+                    flex: 50%;
+                }
+                .tasksection {
+                    flex: 15%;
+                }
+                .taskdate {
+                    flex: 25%;
+                    width:100%;
+                }
+            }
+           
+        }
+        span i {
+                cursor: pointer;
+        }
+        button {
+            background: initial;
+            cursor: pointer;
+            outline: none;
+            border:none;
+            :hover {
+                color: $hover-delete-color;
+            }
+            i {
+                position:absolute;
+                right:0%;
+                bottom:20%;
+                translate: (-50%,-50%);
+                font-size: 1.5em;
+            }
+        }
+    }
+}
+
+a.tasks:hover .tasklist {
+    color:  $hover-border-color;
+}
+
+.selected span i{
+    color:green;
+}
+
+       
+button:disabled  {
+    outline:none;
+    border:none;
+    background: $disabled-color;
+}
+
+button.cancel {
+    width:25%;
+}
+
+
+@media only screen and (max-width:1004px) {
+    .tasklist .grid {
+        display:grid;
+        margin-left:0%;
+        font-size:1em;
+        text-align:center;
+    }
+    .taskcontainer {
+        span i {
+            font-size:1em;
+            position: relative;
+            left:10%;
+            top:25%;
+        }
+        button i {
+            right:20%;
+            top:20%;
+            font-size:3em;
+        }
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .navbar, button.cancel {
+        width:100%;
+    }
+    
+    .taskcontainer {
+        button i {
+            top:30%;
+        }
+    }
+    .title {
+        margin: 0 10%;
+    }
+}
+

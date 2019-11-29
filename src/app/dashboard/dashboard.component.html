@@ -1,0 +1,49 @@
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<div class="container">
+  <nav class="navbar navbar-expand-sm">
+    <button class="btn btn-primary btn-pill"  routerLink="/modyficationtask/{{indexNewTask}}" 
+    (click)="addEmptyTask()" [disabled]="buttonadd">Add Task</button>
+    <button class="btn btn-primary btn-pill" routerLink="/modyficationtask/{{indextaSelectedTask}}" 
+    [disabled]="buttonedit">Edit Tasks</button>
+  </nav>
+  <div class="title">
+    <i class='fas fa-list' (click) ="toogleTasksToday()"></i><h1>Today Task:</h1>
+  </div>
+    <div *ngIf="hiddenToday">
+      <a class="tasks" *ngFor="let task of tasks; let index = index"  
+      [class.selected]="task === selectedTask">  
+        <div  *ngIf="task.date === today " class="taskcontainer">
+            <span (click)="onSelect(task,index)"><i class='fas fa-check-circle'></i></span>
+            <div class="tasklist">
+                <div class="grid">
+                <span class="taskname">{{task.name}}</span>
+                <span class="tasksection">{{task.section}}</span>
+                <span class="taskdate">{{task.date}}</span>
+                </div>
+              </div>
+            <button *ngIf = "!buttonedit" (click)="deleteTask(index)"><i class="fa">&#xf00d;</i></button>
+        </div>
+      </a>
+    </div>
+  <div class="title">
+    <i class='fas fa-list'  (click) = "toogleTasksUpComing()"></i><h1>Upcoming Task:</h1>
+  </div>
+    <div *ngIf="hiddenUpComing">
+      <a class="tasks" *ngFor="let task of tasks; let index = index; "  
+      [class.selected]="task === selectedTask">
+        <div *ngIf="task.date !== today " class="taskcontainer">
+          <span (click)="onSelect(task,index)"><i class='fas fa-check-circle'></i></span>
+          <div class="tasklist">
+              <div class="grid">
+              <span class="taskname">{{task.name}}</span>
+              <span class="tasksection">{{task.section}}</span>
+              <span class="taskdate">{{task.date}}</span>
+              </div>
+            </div>
+          <button *ngIf = "!buttonedit" (click)="deleteTask(index)"><i class="fa">&#xf00d;</i></button>
+        </div>
+      </a>
+    </div>
+    <button class="cancel btn btn-danger btn-pill" [disabled]="buttonedit" (click)="removeSelectTask()">Cancel Tasks</button>
+</div>

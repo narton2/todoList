@@ -1,0 +1,26 @@
+<div class="container">
+  <div *ngIf="task">
+    <h2>Task details</h2>
+    <form>
+      <hr>
+      <div class="taskname">
+        <label for="name">Name:</label>
+        <input id="name" #taskname  [value] ="task.name"  placeholder="name" class="form-control"/>
+      </div>
+      <hr>
+      <div class="section">
+        <label for="section">Section:</label>
+        <input id="section" #tasksection [value]="task.section" placeholder="section" class="form-control"/>
+      </div>
+      <hr>
+      <div class="date">
+        <label for="date">Date:</label>
+        <input id="date" type="date" #taskdate  [value]="task.date" class="form-control"/>
+      </div>
+    </form>
+    <button (click)="saveTask(taskname.value,tasksection.value,taskdate.value)">save</button>
+    <button (click)="goBack()">go back</button>
+  </div>
+</div>
+ 
+  

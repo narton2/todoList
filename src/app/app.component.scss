@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+}
+.main {
+    display: flex;
+    .leftcolumn {
+        flex:5%;
+    }
+    .rightcolumn {
+        flex:5%;
+    }
+    .container {
+        position:relative;
+        width: 100%;
+        height: auto;
+        margin: 5px 0;
+        background:white;
+        flex:80%;
+      }
+    
+}
+
+
+
